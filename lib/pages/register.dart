@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pet_link/pages/login.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
 
   @override
-  _RegisterState createState() => _RegisterState();
+  State<Register> createState() => _RegisterState();
 }
 
 class _RegisterState extends State<Register> {
@@ -13,7 +14,7 @@ class _RegisterState extends State<Register> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  bool _isButtonEnabled = false; 
+  bool _isButtonEnabled = false;
 
   @override
   void initState() {
@@ -35,7 +36,10 @@ class _RegisterState extends State<Register> {
 
   void _validateForm() {
     setState(() {
-      _isButtonEnabled = _nameController.text.isNotEmpty && _lastNameController.text.isNotEmpty && _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
+      _isButtonEnabled = _nameController.text.isNotEmpty &&
+          _lastNameController.text.isNotEmpty &&
+          _emailController.text.isNotEmpty &&
+          _passwordController.text.isNotEmpty;
     });
   }
 
@@ -49,14 +53,13 @@ class _RegisterState extends State<Register> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              width: 250, 
-              height: 250, 
-              child: Image.asset('assets/images/logo.png'), 
+              width: 250,
+              height: 250,
+              child: Image.asset('assets/images/logo.png'),
             ),
-            
-            const SizedBox(height: 30), 
+            const SizedBox(height: 30),
             SizedBox(
-              width: 300,  
+              width: 300,
               child: TextField(
                 controller: _nameController,
                 decoration: InputDecoration(
@@ -75,14 +78,14 @@ class _RegisterState extends State<Register> {
                       width: 2,
                     ),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 ),
               ),
             ),
-
-            const SizedBox(height: 10), 
+            const SizedBox(height: 10),
             SizedBox(
-              width: 300,  
+              width: 300,
               child: TextField(
                 controller: _lastNameController,
                 decoration: InputDecoration(
@@ -101,13 +104,14 @@ class _RegisterState extends State<Register> {
                       width: 2,
                     ),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 ),
               ),
             ),
-            const SizedBox(height: 10), 
+            const SizedBox(height: 10),
             SizedBox(
-              width: 300,  
+              width: 300,
               child: TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
@@ -126,17 +130,17 @@ class _RegisterState extends State<Register> {
                       width: 2,
                     ),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 ),
               ),
             ),
-            const SizedBox(height: 10), 
-
+            const SizedBox(height: 10),
             SizedBox(
-              width: 300,  
+              width: 300,
               child: TextField(
                 controller: _passwordController,
-                obscureText: true, 
+                obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Contraseña',
                   labelStyle: const TextStyle(color: Colors.black54),
@@ -153,22 +157,25 @@ class _RegisterState extends State<Register> {
                       width: 2,
                     ),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 ),
               ),
             ),
-
-            const SizedBox(height: 80), 
-
+            const SizedBox(height: 80),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('¿Aún no tienes cuenta? '),
+                const Text('¿Ya tienes cuenta? '),
                 GestureDetector(
                   onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Login()),
+                    );
                   },
                   child: const Text(
-                    'Regístrate',
+                    'Inicia Sesión',
                     style: TextStyle(
                       color: Color.fromARGB(255, 114, 64, 253),
                       fontWeight: FontWeight.bold,
@@ -177,27 +184,33 @@ class _RegisterState extends State<Register> {
                 ),
               ],
             ),
-            const SizedBox(height: 20), 
-
+            const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: _isButtonEnabled ? () {
-              } : null, 
+              onPressed: _isButtonEnabled
+                  ? () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Login()),
+                      );
+                    }
+                  : null,
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 90, vertical: 18),
-                backgroundColor: Color.fromARGB(255, 114, 64, 253),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 90, vertical: 18),
+                backgroundColor: const Color.fromARGB(255, 114, 64, 253),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
               child: const Text(
-                'Iniciar sesión',
+                'Registrarse',
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 18,
-                )
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: 18,
+                ),
               ),
-            ),
+            )
           ],
         ),
       ),

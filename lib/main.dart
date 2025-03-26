@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pet_link/main_screen.dart';
 import 'package:pet_link/pages/login.dart';
 
 void main() {
@@ -10,9 +11,13 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: const SplashScreen(),
+      routes: {
+        '/login': (context) => const Login(),
+        '/main': (context) => const MainScreen(),
+      },
     );
   }
 }
@@ -32,12 +37,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _navigateToLogin() async {
-    await Future.delayed(const Duration(seconds: 3)); 
+    await Future.delayed(const Duration(seconds: 3));
     if (mounted) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const Login()), 
-      );
+      Navigator.pushReplacementNamed(context, '/login');
     }
   }
 
@@ -48,14 +50,13 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              width: 200, 
-              height: 200, 
-              child: Image.asset('assets/splash.gif'), 
+              width: 200,
+              height: 200,
+              child: Image.asset('assets/splash.gif'),  
             ),
-            const SizedBox(height: 40), 
+            const SizedBox(height: 40),
             const Text(
               'Cargando colitas y ronroneos...',
               style: TextStyle(

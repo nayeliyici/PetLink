@@ -20,4 +20,8 @@ flutter:
   assets:
     - assets/splash.gif
     - assets/images/logo.png
+    - assets/images/petLink.png
+    - assets/images/rocky.png
+    - assets/images/gato.png
+    - assets/images/hamster.png
 

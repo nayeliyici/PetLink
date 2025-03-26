@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pet_link/pages/home.dart';
 import 'package:pet_link/pages/register.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
 
   @override
-  _LoginState createState() => _LoginState();
+  State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
@@ -128,8 +129,9 @@ class _LoginState extends State<Login> {
             const SizedBox(height: 20), 
 
             ElevatedButton(
-              onPressed: _isButtonEnabled ? () {
-              } : null, 
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/main');
+              },
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(horizontal: 90, vertical: 18),
                 backgroundColor: Color.fromARGB(255, 114, 64, 253),
