@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pet_link/pages/formulariolost.dart';
 import 'package:pet_link/pages/vermaslost.dart';
 import 'package:pet_link/shared/app_bar.dart';
 
@@ -53,7 +54,13 @@ class _LostState extends State<Lost> {
               // BOTÓN DE ALERTA
               Center(
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const FormularioExtravio()),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 255, 109, 109),
                     shape: const StadiumBorder(),
@@ -139,7 +146,7 @@ class FilterButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
           color: isSelected
-              ? const Color.fromARGB(255, 84, 69, 213)
+              ? const Color.fromARGB(255, 119, 105, 249)
               : Colors.grey[200],
           borderRadius: BorderRadius.circular(30),
         ),
