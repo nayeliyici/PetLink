@@ -50,50 +50,54 @@ class _LostState extends State<Lost> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // BOTÓN DE ALERTA
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.pinkAccent,
-                  shape: const StadiumBorder(),
-                ),
-                child: const Text(
-                  "¡Perdí a mi Compañero!",
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 255, 109, 109),
+                    shape: const StadiumBorder(),
+                  ),
+                  child: const Text(
+                    "¡Perdí a mi Compañero!",
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
               const SizedBox(height: 16),
 
               // FILTROS
-              Wrap(
-                spacing: 10,
-                runSpacing: 10,
-                children: [
-                  FilterButton(
-                    text: "Todos",
-                    isSelected: selectedFilter == "Todos",
-                    onTap: () => setState(() => selectedFilter = "Todos"),
-                  ),
-                  FilterButton(
-                    text: "Perros",
-                    isSelected: selectedFilter == "Perros",
-                    onTap: () => setState(() => selectedFilter = "Perros"),
-                  ),
-                  FilterButton(
-                    text: "Gatos",
-                    isSelected: selectedFilter == "Gatos",
-                    onTap: () => setState(() => selectedFilter = "Gatos"),
-                  ),
-                  FilterButton(
-                    text: "Reptiles",
-                    isSelected: selectedFilter == "Reptiles",
-                    onTap: () => setState(() => selectedFilter = "Reptiles"),
-                  ),
-                ],
+              Center(
+                child: Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: [
+                    FilterButton(
+                      text: "Todos",
+                      isSelected: selectedFilter == "Todos",
+                      onTap: () => setState(() => selectedFilter = "Todos"),
+                    ),
+                    FilterButton(
+                      text: "Perros",
+                      isSelected: selectedFilter == "Perros",
+                      onTap: () => setState(() => selectedFilter = "Perros"),
+                    ),
+                    FilterButton(
+                      text: "Gatos",
+                      isSelected: selectedFilter == "Gatos",
+                      onTap: () => setState(() => selectedFilter = "Gatos"),
+                    ),
+                    FilterButton(
+                      text: "Reptiles",
+                      isSelected: selectedFilter == "Reptiles",
+                      onTap: () => setState(() => selectedFilter = "Reptiles"),
+                    ),
+                  ],
+                ),
               ),
 
               const SizedBox(height: 16),
@@ -133,7 +137,9 @@ class FilterButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.deepPurple : Colors.grey[200],
+          color: isSelected
+              ? const Color.fromARGB(255, 84, 69, 213)
+              : Colors.grey[200],
           borderRadius: BorderRadius.circular(30),
         ),
         child: Text(
@@ -165,7 +171,7 @@ class ReptilCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(data["imagen"]!, height: 80),
+            Image.asset(data["imagen"]!, height: 100),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
@@ -191,14 +197,12 @@ class ReptilCard extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.pinkAccent,
+                      backgroundColor: const Color.fromARGB(255, 255, 109, 109),
                       shape: const StadiumBorder(),
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                     ),
-                    child: const Text(
-                      "Ver más",
-                      style: TextStyle(fontFamily: 'Poppins'),
-                    ),
+                    child: const Text("Ver más",
+                        style: TextStyle(fontFamily: 'Poppins')),
                   )
                 ],
               ),
