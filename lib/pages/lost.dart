@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pet_link/pages/vermaslost.dart';
 import 'package:pet_link/shared/app_bar.dart';
 
 class Lost extends StatefulWidget {
@@ -163,6 +164,7 @@ class ReptilCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Color.fromARGB(255, 255, 255, 255),
       elevation: 4,
       margin: const EdgeInsets.symmetric(vertical: 10),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -171,7 +173,7 @@ class ReptilCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(data["imagen"]!, height: 100),
+            Image.asset(data["imagen"]!, height: 110),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
@@ -195,15 +197,28 @@ class ReptilCard extends StatelessWidget {
                       style: const TextStyle(fontFamily: 'Poppins')),
                   const SizedBox(height: 6),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => VerMasLost(data: data),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 255, 109, 109),
                       shape: const StadiumBorder(),
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 110),
                     ),
-                    child: const Text("Ver más",
-                        style: TextStyle(fontFamily: 'Poppins')),
-                  )
+                    child: const Text(
+                      "Ver más",
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             )
