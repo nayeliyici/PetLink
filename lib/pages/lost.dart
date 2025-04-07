@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:pet_link/shared/app_bar.dart';
 
-class Lost extends StatelessWidget {
+class Lost extends StatefulWidget {
   const Lost({super.key});
 
-  static final List<Map<String, String>> reptiles = [
+  @override
+  State<Lost> createState() => _LostState();
+}
+
+class _LostState extends State<Lost> {
+  String selectedFilter = "Reptiles";
+
+  final List<Map<String, String>> reptiles = [
     {
       "nombre": "Leopardo",
       "edad": "3 años",
       "color": "Amarillo con manchas negras",
       "ultimaVez": "Calle Hidalgo",
       "senas": "Tiene una pequeña cicatriz en la cola",
-      "imagen": "../assets/images/leopardo.png"
+      "imagen": "assets/images/leopardo.png"
     },
     {
       "nombre": "Bola",
@@ -18,7 +26,7 @@ class Lost extends StatelessWidget {
       "color": "Marrón con patrones dorados",
       "ultimaVez": "Calzada Madero",
       "senas": "Tiene un anillo blanco en la cola",
-      "imagen": "../assets/images/bola.png"
+      "imagen": "assets/images/bola.png"
     },
     {
       "nombre": "Uga",
@@ -26,7 +34,7 @@ class Lost extends StatelessWidget {
       "color": "Verde oscuro con líneas amarillas",
       "ultimaVez": "La experimental",
       "senas": "Caparazón con una grieta pequeña en la parte trasera",
-      "imagen": "../assets/images/uga.png"
+      "imagen": "assets/images/uga.png"
     },
   ];
 
@@ -34,30 +42,14 @@ class Lost extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: const CustomAppBar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Encabezado
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.asset('../assets/images/petLink.png', height: 50),
-                  const Icon(Icons.notifications_none, size: 30),
-                ],
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                "Hola Nayeli",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              const SizedBox(height: 8),
+              // BOTÓN DE ALERTA
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -74,17 +66,39 @@ class Lost extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  FilterButton(text: "Todos"),
-                  FilterButton(text: "Perros"),
-                  FilterButton(text: "Gatos"),
-                  FilterButton(text: "Reptiles", isActive: true),
+              const SizedBox(height: 16),
+
+              // FILTROS
+              Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: [
+                  FilterButton(
+                    text: "Todos",
+                    isSelected: selectedFilter == "Todos",
+                    onTap: () => setState(() => selectedFilter = "Todos"),
+                  ),
+                  FilterButton(
+                    text: "Perros",
+                    isSelected: selectedFilter == "Perros",
+                    onTap: () => setState(() => selectedFilter = "Perros"),
+                  ),
+                  FilterButton(
+                    text: "Gatos",
+                    isSelected: selectedFilter == "Gatos",
+                    onTap: () => setState(() => selectedFilter = "Gatos"),
+                  ),
+                  FilterButton(
+                    text: "Reptiles",
+                    isSelected: selectedFilter == "Reptiles",
+                    onTap: () => setState(() => selectedFilter = "Reptiles"),
+                  ),
                 ],
               ),
-              const SizedBox(height: 10),
+
+              const SizedBox(height: 16),
+
+              // LISTA DE ANIMALES (solo ejemplo: reptiles)
               Expanded(
                 child: ListView.builder(
                   itemCount: reptiles.length,
@@ -103,18 +117,32 @@ class Lost extends StatelessWidget {
 
 class FilterButton extends StatelessWidget {
   final String text;
-  final bool isActive;
+  final bool isSelected;
+  final VoidCallback onTap;
 
-  const FilterButton({required this.text, this.isActive = false});
+  const FilterButton({
+    required this.text,
+    required this.isSelected,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Chip(
-      backgroundColor: isActive ? Colors.deepPurple : Colors.grey[200],
-      label: Text(
-        text,
-        style: TextStyle(
-          color: isActive ? Colors.white : Colors.black87,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        decoration: BoxDecoration(
+          color: isSelected ? Colors.deepPurple : Colors.grey[200],
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Text(
+          text,
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            color: isSelected ? Colors.white : Colors.black87,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ),
     );
