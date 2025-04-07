@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pet_link/pages/home.dart';
 import 'package:pet_link/pages/adoption.dart';
 import 'package:pet_link/pages/lost.dart';
+import 'package:pet_link/pages/notification.dart';
 import 'package:pet_link/pages/profile.dart';
 import 'package:pet_link/shared/bottom_bar.dart';
 
@@ -37,13 +38,14 @@ class _MainScreenState extends State<MainScreen> {
           Home(),
           Adoption(),
           Lost(),
-          Profile()
+          Profile(),
+          NotificationPage()
         ],
       ),
       bottomNavigationBar: BottomNav(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-      ),
+      )
     );
   }
 }

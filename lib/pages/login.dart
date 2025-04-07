@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pet_link/pages/home.dart';
 import 'package:pet_link/pages/register.dart';
 
 class Login extends StatefulWidget {
@@ -13,7 +12,7 @@ class _LoginState extends State<Login> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  bool _isButtonEnabled = false; 
+  bool _isButtonEnabled = false;
 
   @override
   void initState() {
@@ -31,7 +30,8 @@ class _LoginState extends State<Login> {
 
   void _validateForm() {
     setState(() {
-      _isButtonEnabled = _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
+      _isButtonEnabled = _emailController.text.isNotEmpty &&
+          _passwordController.text.isNotEmpty;
     });
   }
 
@@ -45,14 +45,13 @@ class _LoginState extends State<Login> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              width: 250, 
-              height: 250, 
-              child: Image.asset('assets/images/logo.png'), 
+              width: 250,
+              height: 250,
+              child: Image.asset('assets/images/logo.png'),
             ),
-            const SizedBox(height: 30), 
-
+            const SizedBox(height: 30),
             SizedBox(
-              width: 300,  
+              width: 300,
               child: TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
@@ -71,17 +70,17 @@ class _LoginState extends State<Login> {
                       width: 2,
                     ),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 ),
               ),
             ),
-            const SizedBox(height: 10), 
-
+            const SizedBox(height: 10),
             SizedBox(
-              width: 300,  
+              width: 300,
               child: TextField(
                 controller: _passwordController,
-                obscureText: true, 
+                obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Contraseña',
                   labelStyle: const TextStyle(color: Colors.black54),
@@ -98,13 +97,12 @@ class _LoginState extends State<Login> {
                       width: 2,
                     ),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 ),
               ),
             ),
-
-            const SizedBox(height: 80), 
-
+            const SizedBox(height: 80),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -126,15 +124,17 @@ class _LoginState extends State<Login> {
                 ),
               ],
             ),
-            const SizedBox(height: 20), 
-
+            const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, '/main');
-              },
+              onPressed: _isButtonEnabled
+                  ? () {
+                      Navigator.pushReplacementNamed(context, '/main');
+                    }
+                  : null, 
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 90, vertical: 18),
-                backgroundColor: Color.fromARGB(255, 114, 64, 253),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 90, vertical: 18),
+                backgroundColor: const Color.fromARGB(255, 34, 3, 120),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -142,12 +142,12 @@ class _LoginState extends State<Login> {
               child: const Text(
                 'Iniciar sesión',
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 18,
-                )
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: 18,
+                ),
               ),
-            ),
+            )
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pet_link/pages/notification.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -14,43 +15,25 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset('assets/images/petLink.png', width: 200,),
-              // Container(
-              //   width: 50,
-              //   height: 50,
-              //   decoration: BoxDecoration(
-              //     color: Colors.white,
-              //     borderRadius: BorderRadius.circular(15),
-              //     boxShadow: [
-              //       BoxShadow(
-              //         color: Colors.black26,
-              //         blurRadius: 10,
-              //         offset: const Offset(0, 7),
-              //       ),
-              //     ],
-              //   ),
-              //   child: IconButton(
-              //     icon: const Icon(Icons.notifications_none_outlined, size: 35, color: Colors.black),
-              //     onPressed: () {
-              //       ScaffoldMessenger.of(context).showSnackBar(
-              //         const SnackBar(content: Text('Hola xd')),
-              //       );
-              //     },
-              //   ),
-              // ),
+              Image.asset('assets/images/petLink.png', width: 200),
               Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const SizedBox(width: 16),
-                IconButton(
-                    icon: Badge.count(count:3, child: const Icon(Icons.notifications)),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const SizedBox(width: 16),
+                  IconButton(
+                    icon: Badge.count(count: 4, child: const Icon(Icons.notifications)),
                     iconSize: 30,
                     color: Colors.black,
-                    padding: EdgeInsets.all(15),
-                    onPressed: () {},
-                  ), 
-              ],
-            ),
+                    padding: const EdgeInsets.all(15),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const NotificationPage()),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ],
           ),
           const SizedBox(height: 20),
@@ -69,5 +52,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(160); 
+  Size get preferredSize => const Size.fromHeight(160);
 }

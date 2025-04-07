@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pet_link/pages/adoption.dart';
-import 'package:pet_link/pages/lost.dart';
 import 'package:pet_link/shared/app_bar.dart';
-import 'package:pet_link/shared/bottom_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -31,6 +28,15 @@ class _HomeState extends State<Home> {
       'last_seen': 'Centro, Guadalajara',
       'distinguishing_features': 'Tiene una mancha blanca en la pata izquierda'
     },
+    {
+      'image': 'assets/images/rocky.png',
+      'name': 'Max',
+      'age': '5 años',
+      'breed': 'Golden Retriever',
+      'color': 'Dorado',
+      'last_seen': 'Plaza del Sol, Zapopan',
+      'distinguishing_features': 'Collar rojo con placa'
+    },
   ];
 
   final List<Map<String, String>> adoptionPets = [
@@ -51,8 +57,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(),
-      body: 
-      Padding(
+      body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
           child: Column(
@@ -71,9 +76,13 @@ class _HomeState extends State<Home> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Ver todo - Perdidas')),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) =>
+                      //         const Lost(),
+                      //   ),
+                      // );
                     },
                     child: const Text(
                       'Ver todo',
@@ -271,15 +280,17 @@ class _HomeState extends State<Home> {
                                   onPressed: () {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                        content: Text('Interesado en ${pet['name']}')
-                                      ),
+                                          content: Text(
+                                              'Interesado en ${pet['name']}')),
                                     );
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor:const Color.fromARGB(255, 253, 128, 135),
-                                    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0), 
-                                    minimumSize: const Size(50, 30), 
-                                    textStyle: const TextStyle(fontSize: 12), 
+                                    backgroundColor: const Color.fromARGB(
+                                        255, 253, 128, 135),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0, vertical: 4.0),
+                                    minimumSize: const Size(50, 30),
+                                    textStyle: const TextStyle(fontSize: 12),
                                   ),
                                   child: const Text(
                                     'Ver Más',
