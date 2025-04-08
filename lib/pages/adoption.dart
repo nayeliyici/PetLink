@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pet_link/models/pet.dart';
 import 'package:pet_link/pages/details_adoption.dart';
+import 'package:pet_link/pages/form_show_adoption.dart';
 import 'package:pet_link/shared/app_bar.dart';
 
 class Adoption extends StatefulWidget {
@@ -36,6 +37,31 @@ class _AdoptionState extends State<Adoption> {
       appBar: const CustomAppBar(),
       body: Column(
         children: [
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const FormShowAdoption()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 255, 109, 109),
+                shape: const StadiumBorder(),
+              ),
+              child: const Text(
+                "Anunciar adopción",
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 20),
           Container(
             color: Colors.white,
             padding: const EdgeInsets.symmetric(vertical: 10),
@@ -45,7 +71,7 @@ class _AdoptionState extends State<Adoption> {
               child: Row(
                 children: _categories.map((category) {
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal:5),
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: ElevatedButton(
                       onPressed: () {
                         setState(() {
@@ -62,7 +88,8 @@ class _AdoptionState extends State<Adoption> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 15),
                         elevation: 0,
                       ),
                       child: Text(

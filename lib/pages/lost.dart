@@ -62,6 +62,22 @@ class _LostState extends State<Lost> {
     },
   ];
 
+  List<Map<String, String>> getFilteredPets() {
+    if (selectedFilter == "Todos") {
+      return [...dogs, ...cats, ...reptiles];
+    } else if (selectedFilter == "Perros") {
+      return dogs;
+    } else if (selectedFilter == "Gatos") {
+      return cats;
+    } else if (selectedFilter == "Reptiles") {
+      return reptiles;
+    } else if (selectedFilter == "MisMascotas") {
+      return reptiles.where((pet) => pet["nombre"] == "Uga").toList();
+    } else {
+      return [];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,14 +89,14 @@ class _LostState extends State<Lost> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // BOTÓN DE ALERTA
               Center(
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const FormularioExtravio()),
+                        builder: (context) => const FormularioExtravio(),
+                      ),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -137,15 +153,13 @@ class _LostState extends State<Lost> {
                   ),
                 ),
               ),
-
               const SizedBox(height: 16),
-
-              // LISTA DE ANIMALES (solo ejemplo: reptiles)
               Expanded(
                 child: ListView.builder(
-                  itemCount: reptiles.length,
+                  itemCount: getFilteredPets().length,
                   itemBuilder: (context, index) {
-                    return ReptilCard(data: reptiles[index]);
+                    final pet = getFilteredPets()[index];
+                    return ReptilCard(data: pet);
                   },
                 ),
               ),
@@ -202,7 +216,7 @@ class ReptilCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Color.fromARGB(255, 255, 255, 255),
+      color: const Color.fromARGB(255, 255, 255, 255),
       elevation: 4,
       margin: const EdgeInsets.symmetric(vertical: 10),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
