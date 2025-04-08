@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pet_link/shared/app_bar.dart';
 
 class VerMasLost extends StatelessWidget {
   final Map<String, String> data;
@@ -9,8 +8,18 @@ class VerMasLost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
-      resizeToAvoidBottomInset: true, // Para que el teclado no tape
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      resizeToAvoidBottomInset: true, 
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20.0),
@@ -52,18 +61,18 @@ class VerMasLost extends StatelessWidget {
               const CommentTile(
                   name: "Brayan",
                   message: "Acabo de ver una tortuga similar en Ocotlán",
-                  avatar: "../assets/images/Brayan.png",
+                  avatar: "assets/images/Brayan.png",
                   hasMessage: true),
               const CommentTile(
                 name: "Amanda",
                 message: "Benito se comió una, ¿puede ser la tuya?",
-                avatar: "../assets/images/Amanda.png",
+                avatar: "assets/images/Amanda.png",
                 hasMessage: true,
               ),
               const CommentTile(
                 name: "Fabi",
                 message: "¿Hay recompensa?",
-                avatar: "../assets/images/Fabi.png",
+                avatar: "assets/images/Fabi.png",
                 hasMessage: true,
               ),
               const SizedBox(height: 20),
@@ -81,6 +90,33 @@ class VerMasLost extends StatelessWidget {
                   ),
                 ),
               ),
+              if (data["nombre"] == "Uga") ...[
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Mascota marcada como encontrada')),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 114, 64, 253),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                  ),
+                  child: const Text(
+                    "Encontre a mi mascota",
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Colors.white
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30)
+              ],
             ],
           ),
         ),

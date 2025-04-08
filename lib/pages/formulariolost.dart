@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pet_link/shared/app_bar.dart';
+import 'package:pet_link/main_screen.dart';
 
 class FormularioExtravio extends StatelessWidget {
   const FormularioExtravio({super.key});
@@ -7,7 +7,16 @@ class FormularioExtravio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Container(
         color: const Color.fromARGB(255, 255, 255, 255),
         child: SingleChildScrollView(
@@ -18,13 +27,12 @@ class FormularioExtravio extends StatelessWidget {
               const Text(
                 "Formulario de extravío",
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 22,
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 15),
-              // CÍRCULO CON ICONO DE CÁMARA
               CircleAvatar(
                 radius: 40,
                 backgroundColor: const Color.fromARGB(255, 220, 220, 220),
@@ -32,13 +40,10 @@ class FormularioExtravio extends StatelessWidget {
                   icon: const Icon(Icons.photo_camera,
                       size: 30, color: Colors.black87),
                   onPressed: () {
-                    // lógica para elegir imagen
                   },
                 ),
               ),
               const SizedBox(height: 20),
-
-              // CAMPOS DE TEXTO
               const CustomTextField(label: "Nombre de la mascota:"),
               const CustomTextField(label: "Edad:"),
               const CustomTextField(label: "Género:"),
@@ -46,29 +51,32 @@ class FormularioExtravio extends StatelessWidget {
               const CustomTextField(label: "Última vez visto en:"),
               const CustomTextField(label: "Fecha de desaparición:"),
               const CustomTextField(label: "Señas particulares:"),
-
               const SizedBox(height: 30),
-
               ElevatedButton(
                 onPressed: () {
-                  // lógica para guardar o enviar el formulario
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MainScreen()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 119, 105, 249),
                   shape: const StadiumBorder(),
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 ),
                 child: const Text(
                   'Publicar',
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     color: Colors.white,
-                    fontSize: 14,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-              )
+              ),
+              SizedBox(height: 35),
             ],
           ),
         ),
@@ -90,7 +98,7 @@ class CustomTextField extends StatelessWidget {
         Text(
           label,
           style: const TextStyle(
-              fontFamily: 'Poppins', fontWeight: FontWeight.w500),
+              fontFamily: 'Poppins', fontWeight: FontWeight.w500, fontSize: 15),
         ),
         const SizedBox(height: 5),
         TextField(

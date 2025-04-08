@@ -13,6 +13,28 @@ class Lost extends StatefulWidget {
 class _LostState extends State<Lost> {
   String selectedFilter = "Reptiles";
 
+  final List<Map<String, String>> dogs = [
+    {
+      "nombre": "Firulais",
+      "edad": "2 años",
+      "color": "Café claro",
+      "ultimaVez": "Parque Central",
+      "senas": "Tiene una mancha blanca en el lomo",
+      "imagen": "assets/images/duke.png"
+    },
+  ];
+
+  final List<Map<String, String>> cats = [
+    {
+      "nombre": "Michi",
+      "edad": "4 años",
+      "color": "Naranja",
+      "ultimaVez": "Colonia Roma",
+      "senas": "Cola doblada al final",
+      "imagen": "assets/images/gato.png"
+    },
+  ];
+
   final List<Map<String, String>> reptiles = [
     {
       "nombre": "Leopardo",
@@ -77,34 +99,42 @@ class _LostState extends State<Lost> {
                 ),
               ),
               const SizedBox(height: 16),
-
-              // FILTROS
-              Center(
-                child: Wrap(
-                  spacing: 10,
-                  runSpacing: 10,
-                  children: [
-                    FilterButton(
-                      text: "Todos",
-                      isSelected: selectedFilter == "Todos",
-                      onTap: () => setState(() => selectedFilter = "Todos"),
-                    ),
-                    FilterButton(
-                      text: "Perros",
-                      isSelected: selectedFilter == "Perros",
-                      onTap: () => setState(() => selectedFilter = "Perros"),
-                    ),
-                    FilterButton(
-                      text: "Gatos",
-                      isSelected: selectedFilter == "Gatos",
-                      onTap: () => setState(() => selectedFilter = "Gatos"),
-                    ),
-                    FilterButton(
-                      text: "Reptiles",
-                      isSelected: selectedFilter == "Reptiles",
-                      onTap: () => setState(() => selectedFilter = "Reptiles"),
-                    ),
-                  ],
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Center(
+                  child: Wrap(
+                    spacing: 10,
+                    runSpacing: 10,
+                    children: [
+                      FilterButton(
+                        text: "Todos",
+                        isSelected: selectedFilter == "Todos",
+                        onTap: () => setState(() => selectedFilter = "Todos"),
+                      ),
+                      FilterButton(
+                        text: "Perros",
+                        isSelected: selectedFilter == "Perros",
+                        onTap: () => setState(() => selectedFilter = "Perros"),
+                      ),
+                      FilterButton(
+                        text: "Gatos",
+                        isSelected: selectedFilter == "Gatos",
+                        onTap: () => setState(() => selectedFilter = "Gatos"),
+                      ),
+                      FilterButton(
+                        text: "Reptiles",
+                        isSelected: selectedFilter == "Reptiles",
+                        onTap: () =>
+                            setState(() => selectedFilter = "Reptiles"),
+                      ),
+                      FilterButton(
+                        text: "Mis mascotas",
+                        isSelected: selectedFilter == "MisMascotas",
+                        onTap: () =>
+                            setState(() => selectedFilter = "MisMascotas"),
+                      ),
+                    ],
+                  ),
                 ),
               ),
 
@@ -133,6 +163,7 @@ class FilterButton extends StatelessWidget {
   final VoidCallback onTap;
 
   const FilterButton({
+    super.key,
     required this.text,
     required this.isSelected,
     required this.onTap,
@@ -166,7 +197,7 @@ class FilterButton extends StatelessWidget {
 class ReptilCard extends StatelessWidget {
   final Map<String, String> data;
 
-  const ReptilCard({required this.data});
+  const ReptilCard({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +211,7 @@ class ReptilCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(data["imagen"]!, height: 110),
+            Image.asset(data["imagen"]!, height: 100),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
@@ -215,7 +246,7 @@ class ReptilCard extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 255, 109, 109),
                       shape: const StadiumBorder(),
-                      padding: const EdgeInsets.symmetric(horizontal: 110),
+                      padding: const EdgeInsets.symmetric(horizontal: 75),
                     ),
                     child: const Text(
                       "Ver más",

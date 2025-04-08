@@ -74,25 +74,25 @@ class _HomeState extends State<Home> {
                       color: Colors.black,
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) =>
-                      //         const Lost(),
-                      //   ),
-                      // );
-                    },
-                    child: const Text(
-                      'Ver todo',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Color.fromARGB(255, 114, 64, 253),
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //         builder: (context) =>
+                  //             const Lost(),
+                  //       ),
+                  //     );
+                  //   },
+                  //   child: const Text(
+                  //     'Ver todo',
+                  //     style: TextStyle(
+                  //       fontSize: 16,
+                  //       color: Color.fromARGB(255, 114, 64, 253),
+                  //       fontWeight: FontWeight.w500,
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
               const SizedBox(height: 20),
@@ -199,21 +199,21 @@ class _HomeState extends State<Home> {
                       color: Colors.black,
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Ver todo - Adopción')),
-                      );
-                    },
-                    child: const Text(
-                      'Ver todo',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Color.fromARGB(255, 114, 64, 253),
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     ScaffoldMessenger.of(context).showSnackBar(
+                  //       const SnackBar(content: Text('Ver todo - Adopción')),
+                  //     );
+                  //   },
+                  //   child: const Text(
+                  //     'Ver todo',
+                  //     style: TextStyle(
+                  //       fontSize: 16,
+                  //       color: Color.fromARGB(255, 114, 64, 253),
+                  //       fontWeight: FontWeight.w500,
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
               const SizedBox(height: 20),

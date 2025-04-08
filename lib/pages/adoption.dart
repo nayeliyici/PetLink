@@ -41,30 +41,33 @@ class _AdoptionState extends State<Adoption> {
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 children: _categories.map((category) {
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                    child: ChoiceChip(
-                      label: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                        child: Text(category),
-                      ),
-                      labelStyle: TextStyle(
-                        color: selectedCategory == category ? Colors.white : Colors.grey[800],
-                        fontSize: 16,
-                      ),
-                      selected: selectedCategory == category,
-                      selectedColor: Colors.purple,
-                      backgroundColor: Colors.grey[300],
-                      onSelected: (bool isSelected) {
+                    padding: const EdgeInsets.symmetric(horizontal:5),
+                    child: ElevatedButton(
+                      onPressed: () {
                         setState(() {
                           selectedCategory = category;
                         });
                       },
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: selectedCategory == category
+                            ? const Color.fromARGB(255, 114, 64, 253)
+                            : Colors.grey[200],
+                        foregroundColor: selectedCategory == category
+                            ? Colors.white
+                            : Colors.grey[800],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                        elevation: 0,
+                      ),
+                      child: Text(
+                        category,
+                        style: const TextStyle(fontSize: 16),
                       ),
                     ),
                   );
@@ -83,7 +86,8 @@ class _AdoptionState extends State<Adoption> {
                   childAspectRatio: 0.85,
                 ),
                 itemCount: filteredPets.length,
-                itemBuilder: (context, index) => PetCard(pet: filteredPets[index]),
+                itemBuilder: (context, index) =>
+                    PetCard(pet: filteredPets[index]),
               ),
             ),
           ),
@@ -96,15 +100,33 @@ class _AdoptionState extends State<Adoption> {
 const List<Map<String, String>> _petData = [
   {'image': 'assets/images/roxy.png', 'category': 'Perros', 'name': 'Roxy'},
   {'image': 'assets/images/duke.png', 'category': 'Perros', 'name': 'Duke'},
-  {'image': 'assets/images/charlie.png', 'category': 'Perros', 'name': 'Charlie'},
+  {
+    'image': 'assets/images/charlie.png',
+    'category': 'Perros',
+    'name': 'Charlie'
+  },
   {'image': 'assets/images/thor.png', 'category': 'Perros', 'name': 'Thor'},
   {'image': 'assets/images/benny.png', 'category': 'Perros', 'name': 'Benny'},
   {'image': 'assets/images/daisy.png', 'category': 'Perros', 'name': 'Daisy'},
-  {'image': 'assets/images/gato.png','category': 'Gatos','name': 'Buddy',},
-  {'image': 'assets/images/hamster.png','category': 'Roedores','name': 'Coco',},
+  {
+    'image': 'assets/images/gato.png',
+    'category': 'Gatos',
+    'name': 'Buddy',
+  },
+  {
+    'image': 'assets/images/hamster.png',
+    'category': 'Roedores',
+    'name': 'Coco',
+  },
 ];
 
-const List<String> _categories = ['Todos', 'Perros', 'Gatos', 'Roedores', 'Reptiles'];
+const List<String> _categories = [
+  'Todos',
+  'Perros',
+  'Gatos',
+  'Roedores',
+  'Reptiles'
+];
 
 class PetCard extends StatelessWidget {
   final Pet pet;
@@ -141,11 +163,13 @@ class PetCard extends StatelessWidget {
                   children: [
                     Text(
                       pet.category,
-                      style: const TextStyle(fontSize: 14, color: Colors.black54),
+                      style:
+                          const TextStyle(fontSize: 14, color: Colors.black54),
                     ),
                     Text(
                       pet.name,
-                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -160,11 +184,13 @@ class PetCard extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 253, 128, 135),
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0, vertical: 4.0),
                     minimumSize: const Size(50, 30),
                     textStyle: const TextStyle(fontSize: 12),
                   ),
-                  child: const Text('Ver Más', style: TextStyle(color: Colors.white)),
+                  child: const Text('Ver Más',
+                      style: TextStyle(color: Colors.white)),
                 ),
               ],
             ),
@@ -174,4 +200,3 @@ class PetCard extends StatelessWidget {
     );
   }
 }
-
